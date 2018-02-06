@@ -1,0 +1,4 @@
+in indextest.html
+1.find testing size.html and change it to the name of your html file
+2. put all files and folders here
+3. when publishing the FLA select center and responsive
