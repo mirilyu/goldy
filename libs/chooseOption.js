@@ -3,6 +3,7 @@ var cursorsArray = [];
 var pickAxeCursor = {};
 var questionBoard = {};
 var animationContainer = {};
+var answerModal = {};
 
 function movePickAxe() {
 	var scaleCoeff = 1-(Math.abs(1-stage.scaleX));
@@ -14,23 +15,47 @@ function startGame() {
 	printQuestion();
 }
 
+function showAnswerModal(isCorrect) {
+	answerModal = new lib.answerModal();
+	if(isCorrect) {
+		answerModal.instance_1.alpha = 0;
+		answerModal.instance_2.alpha = 1;
+		answerModal.answerModal__text.text = 'תשובתך נכונה!';
+	} else {
+		answerModal.instance_1.alpha = 1;
+		answerModal.instance_2.alpha = 0;
+		answerModal.answerModal__text.text = 'תשובתך לא נכונה!';
+	}
+	answerModal.instance_3.alpha = 0.3;
+	answerModal.y = 0;
+	answerModal.x = 480;
+	answerModal.instance.addEventListener('click', function() {
+		stage.removeChild(answerModal);
+		optionsArray.forEach(function(e) {
+			stage.removeChild(e);
+		});
+		optionsArray = [];
+		stage.removeChild(questionBoard);
+		printQuestion(0);
+	})
+	stage.addChild(answerModal);
+}
+
 function correctAnswer() {
 	console.log('Correct!');
 	questions.splice(0,1);
 	if(questions.length > 0) {
-		printQuestion(0);
+		showAnswerModal(true);
 	} else {
 		alert("There are no questions left");
 	}
-	alert('Correct!');
 }
 
 function wrongAnswer() {
 	console.log('Wrong!');
 	questions.splice(questions.length,0,questions[0]);
 	questions.splice(0,1);
-	printQuestion(0);
-	alert('Wrong!');
+	showAnswerModal(false);
 }
 
 function chooseOptionFn(questionOption) {
@@ -66,14 +91,17 @@ function leaveOption() {
 }
 
 function selectOption(event) {
-	stage.removeChild(questionBoard);
-
-	optionsArray.forEach(function(e) {
-		stage.removeChild(e);
-	});
-	optionsArray = [];
 	leaveOption();
 	chooseOptionFn(event.currentTarget);
+
+	optionsArray.forEach(function(option) {
+		if(option != event.currentTarget) {
+			option.alpha = 0.5;
+		}
+		option.removeEventListener("click", selectOption, false);
+		option.removeEventListener('mouseover', enterOption, false);
+		option.removeEventListener('mouseout', leaveOption, false);
+	})
 }
 
 function printQuestion() {
@@ -97,14 +125,13 @@ function printQuestion() {
 		questionOption.x = (stageWidth-((circleWidth)*questions[0].options.length))/2+((circleWidth+gutter)*index);
 		questionOption.x = questionOption.x-gutter;
 		questionOption.y = 342;
-		questionOption.clickableArea.alpha = 0.01;
 		questionOption.isCorrect = option.isCorrect;
 		
 		optionsArray.push(questionOption);
 		
 		questionOption.addEventListener("click", selectOption, false);
-		questionOption.clickableArea.addEventListener('mouseover', enterOption, false);
-		questionOption.clickableArea.addEventListener('mouseout', leaveOption, false);
+		questionOption.addEventListener('mouseover', enterOption, false);
+		questionOption.addEventListener('mouseout', leaveOption, false);
 
 		stage.addChild(questionOption);
 	});

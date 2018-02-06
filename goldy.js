@@ -2,7 +2,7 @@
 
 var p; // shortcut to reference prototypes
 lib.ssMetadata = [
-		{name:"goldy_atlas_", frames: [[157,319,32,32],[0,0,245,317],[0,319,155,161]]}
+		{name:"goldy_atlas_", frames: [[0,0,960,672],[704,674,32,32],[404,674,148,148],[0,674,245,317],[247,674,155,161],[554,674,148,148]]}
 ];
 
 
@@ -10,23 +10,44 @@ lib.ssMetadata = [
 
 
 
-(lib.ComboBox = function() {
+(lib.cavern = function() {
 	this.spriteSheet = ss["goldy_atlas_"];
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.pickaxeaiAssets = function() {
+(lib.ComboBox = function() {
 	this.spriteSheet = ss["goldy_atlas_"];
 	this.gotoAndStop(1);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.stoneaiAssets = function() {
+(lib.correctaiAssets = function() {
 	this.spriteSheet = ss["goldy_atlas_"];
 	this.gotoAndStop(2);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.pickaxeaiAssets = function() {
+	this.spriteSheet = ss["goldy_atlas_"];
+	this.gotoAndStop(3);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.stoneaiAssets = function() {
+	this.spriteSheet = ss["goldy_atlas_"];
+	this.gotoAndStop(4);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.wrongaiAssets = function() {
+	this.spriteSheet = ss["goldy_atlas_"];
+	this.gotoAndStop(5);
 }).prototype = p = new cjs.Sprite();
 // helper functions:
 
@@ -403,6 +424,35 @@ p.nominalBounds = new cjs.Rectangle(-45.3,-13.7,90.6,27.5);
 p.nominalBounds = new cjs.Rectangle(-21.1,-13.7,42.2,27.5);
 
 
+(lib.answerModal__btn = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#454545").s().p("AALAvIAAhUIggAAIAAgJIAsAAIAABdg");
+	this.shape.setTransform(11.8,-0.2);
+
+	this.shape_1 = new cjs.Shape();
+	this.shape_1.graphics.f("#454545").s().p("AgTAhQgJgCgIgEIAAg9IAKAAIAAA4IANADIALACQAIAAAHgDQAGgCAEgFQAEgFgBgHIAAgnIALAAIAAAoQAAAJgFAHQgGAHgIADQgJADgKAAQgIAAgKgCgAgJAPQACgDACgEIABgIIAAgiIAJAAIAAAgIgBAKQgCAEgCADg");
+	this.shape_1.setTransform(4.3,-1.3);
+
+	this.shape_2 = new cjs.Shape();
+	this.shape_2.graphics.f("#454545").s().p("AACAjIAAgIIARAAIAAghQAAgJgEgFQgEgFgIAAQgFAAgEAEQgDAFgBAHIgGAsIgKAAIAFgrIADgJQACgEADgCIABgBIgHABIgHACIgDgIIAQgEIAOgBQAOAAAIAHQAHAIAAAOIAAAog");
+	this.shape_2.setTransform(-4.3,-1.5);
+
+	this.shape_3 = new cjs.Shape();
+	this.shape_3.graphics.f("#454545").s().p("AAPAjIAAgrQAAgJgDgDQgEgFgJAAIgYAAIAAgJIAZAAQANABAHAGQAGAHABAMIAAArgAgZAjIAAgYIABgJIACgEIAIAAIAAAEIAAAIIAAAZg");
+	this.shape_3.setTransform(-11.6,-1.4);
+
+	this.shape_4 = new cjs.Shape();
+	this.shape_4.graphics.f("#999999").s().p("AkIB9Qg8AAAAg8IAAiBQAAg8A8AAIIRAAQA8AAAAA8IAACBQAAA8g8AAg");
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_4},{t:this.shape_3},{t:this.shape_2},{t:this.shape_1},{t:this.shape}]}).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-52,-12.5,104,25);
+
+
 (lib.Symbol1 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -480,6 +530,19 @@ p._updateVisibility = _updateVisibility;
 
 
 
+(lib.answerModal__iconwrong = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.instance = new lib.wrongaiAssets();
+	this.instance.parent = this;
+	this.instance.setTransform(-15,-15,0.203,0.203);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = getMCSymbolPrototype(lib.answerModal__iconwrong, new cjs.Rectangle(-15,-15,30,30), null);
+
+
 (lib.Path_14_1 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -551,6 +614,31 @@ p._updateVisibility = _updateVisibility;
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_1},{t:this.shape}]}).wait(1));
 
 }).prototype = getMCSymbolPrototype(lib.Path_1, new cjs.Rectangle(0,0,29.9,26.3), null);
+
+
+(lib.correctai = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.instance = new lib.correctaiAssets();
+	this.instance.parent = this;
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(0,0,148,148);
+
+
+(lib.answerModal__overlay = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#000000").s().p("EhK/ArwMAAAhXfMCV/AAAMAAABXfg");
+
+	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
+
+}).prototype = getMCSymbolPrototype(lib.answerModal__overlay, new cjs.Rectangle(-480,-280,960,560), null);
 
 
 (lib.board_no_txt = function(mode,startPosition,loop) {
@@ -780,6 +868,19 @@ p._updateVisibility = _updateVisibility;
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.mycb},{t:this.startbtn}]}).wait(1));
 
 }).prototype = getMCSymbolPrototype(lib.forcomb, new cjs.Rectangle(-84.6,-0.5,185.2,23), null);
+
+
+(lib.answerModal__iconcorrect = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.instance = new lib.correctai("synched",0);
+	this.instance.parent = this;
+	this.instance.setTransform(-0.5,0.6,0.202,0.202,0,0,0,71.6,76.5);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = getMCSymbolPrototype(lib.answerModal__iconcorrect, new cjs.Rectangle(-15,-14.9,30,30), null);
 
 
 (lib.gamelogo = function(mode,startPosition,loop) {
@@ -1016,6 +1117,44 @@ p._updateVisibility = _updateVisibility;
 }).prototype = getMCSymbolPrototype(lib.gamelogo, new cjs.Rectangle(-156.1,-146.7,312.3,293.5), null);
 
 
+(lib.answerModal = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// btnBG.ai
+	this.instance = new lib.answerModal__btn();
+	this.instance.parent = this;
+	this.instance.setTransform(0,339.5);
+	new cjs.ButtonHelper(this.instance, 0, 1, 1);
+
+	this.instance_1 = new lib.answerModal__iconwrong();
+	this.instance_1.parent = this;
+	this.instance_1.setTransform(-104.4,271.4);
+
+	this.instance_2 = new lib.answerModal__iconcorrect();
+	this.instance_2.parent = this;
+	this.instance_2.setTransform(-104.4,271.4);
+
+	this.answerModal__text = new cjs.Text("", "16px 'Heebo'", "#333333");
+	this.answerModal__text.name = "answerModal__text";
+	this.answerModal__text.textAlign = "center";
+	this.answerModal__text.lineHeight = 26;
+	this.answerModal__text.lineWidth = 150;
+	this.answerModal__text.parent = this;
+	this.answerModal__text.setTransform(0,288.4);
+
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#FFFFFF").s().p("ArBFpQg8AAAAg8IAApZQAAg8A8AAIWDAAQA8AAAAA8IAAJZQAAA8g8AAg");
+	this.shape.setTransform(0,309.9,1.632,1.663);
+
+	this.instance_3 = new lib.answerModal__overlay();
+	this.instance_3.parent = this;
+	this.instance_3.setTransform(0,295,1,1.054);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_3},{t:this.shape},{t:this.answerModal__text},{t:this.instance_2},{t:this.instance_1},{t:this.instance}]}).wait(1));
+
+}).prototype = getMCSymbolPrototype(lib.answerModal, new cjs.Rectangle(-480,0,960,590), null);
+
+
 (lib.navigation = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -1146,8 +1285,14 @@ p._updateVisibility = _updateVisibility;
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
 
+	// Layer 4
+	this.instance_1 = new lib.cavern();
+	this.instance_1.parent = this;
+
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1));
+
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(479.5,294.5,961,61);
+p.nominalBounds = new cjs.Rectangle(479.5,294.5,961,672.5);
 // library properties:
 lib.properties = {
 	width: 960,
@@ -1156,10 +1301,10 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/goldy_atlas_.png?1517939504412", id:"goldy_atlas_"},
-		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1517939504585", id:"lib/jquery-2.2.4.min.js"},
-		{src:"components/sdk/anwidget.js?1517939504585", id:"sdk/anwidget.js"},
-		{src:"components/ui/src/combobox.js?1517939504585", id:"an.ComboBox"}
+		{src:"images/goldy_atlas_.png?1517949429077", id:"goldy_atlas_"},
+		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1517949429270", id:"lib/jquery-2.2.4.min.js"},
+		{src:"components/sdk/anwidget.js?1517949429270", id:"sdk/anwidget.js"},
+		{src:"components/ui/src/combobox.js?1517949429270", id:"an.ComboBox"}
 	],
 	preloads: []
 };
