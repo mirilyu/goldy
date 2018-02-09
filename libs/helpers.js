@@ -1,3 +1,9 @@
+function startGame() {
+	addTimer();
+	addTrolley();		
+	printQuestion();
+}
+
 function toggleElementVisibility(element) {
 	element.visible = !element.visible;
 }
@@ -37,9 +43,6 @@ function movePickAxe() {
 	pickAxeCursor.y = (stage.mouseY)*scaleCoeff;
 }
 
-function startGame() {
-	printQuestion();
-}
 
 function cleanStage() {
 	stage.removeChild(answerModal);
@@ -52,12 +55,7 @@ function cleanStage() {
 }
 
 function startTimer() {
-	timer = new lib.timer();
-	timer.x = 32;
-	timer.y = 60;
-	timer.timer__text.font = "50px 'Heebo'";
 	timer.timer__text.text = questionTime;
-	stage.addChild(timer);
 
 	timerSeconds = setInterval(function() {
 		var remainingTime = timer.timer__text.text - 1;
@@ -77,4 +75,20 @@ function stopTimer() {
     clearInterval(timerSeconds);
     timeSpent += questionTime - parseInt(timer.timer__text.text);
 	console.log(timeSpent);
+}
+
+function addTimer() {
+	timer = new lib.timer();
+	timer.x = 32;
+	timer.y = 60;
+	timer.timer__text.font = "50px 'Heebo'";
+	stage.addChild(timer);
+}
+
+function addTrolley() {
+	trolley = new lib.goldTrolley();
+	trolley.y = 100;
+	trolley.x = 800;
+	trolley.goldTrolley__text.font = "60px 'Heebo'";
+	stage.addChild(trolley);
 }

@@ -1,14 +1,21 @@
+// arrays
 var optionsArray = [];
 var cursorsArray = [];
+
+// animate CC object
 var pickAxeCursor = {};
 var questionBoard = {};
 var animationContainer = {};
 var answerModal = {};
 var chosenTopic = [];
 var timer = {};
+var trolley = {};
+var timerSeconds = {};
+
+// counters
+var correctAnswersCounter = 0;
 var questionTime = 59;
 var timeSpent = 0;
-var timerSeconds = {};
 
 function showAnswerModal(answer) {
 	answerModal = new lib.answerModal();
@@ -46,12 +53,16 @@ function showAnswerModal(answer) {
 }
 
 function correctAnswer() {
-	chosenTopic.questions.splice(0,1);
-	if(chosenTopic.questions.length > 0) {
-		showAnswerModal('correct');
-	} else {
-		alert("There are no questions left");
-	}
+	trolley.gotoAndPlay(1);
+	trolley.goldTrolley__text.text = ++correctAnswersCounter;
+	setTimeout(function() {
+		chosenTopic.questions.splice(0,1);
+		if(chosenTopic.questions.length > 0) {
+			showAnswerModal('correct');
+		} else {
+			alert("There are no questions left");
+		}
+	}, 850);
 }
 
 function wrongAnswer() {
@@ -62,7 +73,7 @@ function wrongAnswer() {
 function chooseOptionFn(questionOption) {
 	stopTimer();
 	var isCorrect = questionOption.isCorrect;
-	if(isCorrect === true) {
+	if(isCorrect) {
 		correctAnswer();
 	} else {
 		wrongAnswer();
