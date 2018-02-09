@@ -95,16 +95,12 @@ function correctAnswer(questionOption) {
 	trolley.goldTrolley__text.text = ++correctAnswersCounter;
 	setTimeout(function() {
 		chosenTopicQuestions.splice(0,1);
-		var test = testQuestions;
-		console.log(testQuestions);
-		debugger;
 		if(chosenTopicQuestions.length > 0) {
 			showAnswerModal('correct');
 		} else {
 			var finalScore = 0;
 			for (var property1 in questionTries) {
 				finalScore += parseInt(questionTries[property1])*(100 / (numberOfQuestions * parseInt(property1)));
-				debugger;
 			}
 			console.log(Math.round(finalScore));
 			cleanStage('all');
@@ -170,7 +166,6 @@ function selectOption(event) {
 function printQuestion() {
 
 	addQuestionBoard(chosenTopicQuestions[0].questionText);
-		debugger;
 		chosenTopicQuestions[0].options.forEach(function(option, index) {
 		var questionOption = new lib.stoneOption();
 		questionOption.optionText.color = "#333333";

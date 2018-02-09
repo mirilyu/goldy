@@ -2032,10 +2032,10 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/goldy_atlas_.png?1518204003389", id:"goldy_atlas_"},
-		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1518204003728", id:"lib/jquery-2.2.4.min.js"},
-		{src:"components/sdk/anwidget.js?1518204003728", id:"sdk/anwidget.js"},
-		{src:"components/ui/src/combobox.js?1518204003728", id:"an.ComboBox"}
+		{src:"images/goldy_atlas_.png?1518204665617", id:"goldy_atlas_"},
+		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1518204665954", id:"lib/jquery-2.2.4.min.js"},
+		{src:"components/sdk/anwidget.js?1518204665954", id:"sdk/anwidget.js"},
+		{src:"components/ui/src/combobox.js?1518204665954", id:"an.ComboBox"}
 	],
 	preloads: []
 };
