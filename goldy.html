@@ -22,123 +22,294 @@
   }
 </style>
 <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
-<script src="goldy.js?1517949429311"></script>
+<script src="goldy.js?1518188835970"></script>
 <script>
 // Global Scripts
-	var subjects = ["לא בחרת נושא", "חשבון", "היסטוריה", "אנגלית"];
-var gutter = 16;
-var questions = [
-	{
-		questionText: 'Which bear is the best bear?',
-		options: [
-			{
-				text: 'Black bear',
-				isCorrect: true
-			},
-			{
-				text: 'Polar bear',
-				isCorrect: false
-			},
-			{
-				text: 'Grizly bear',
-				isCorrect: false
-			},
-			{
-				text: 'Brown bear',
-				isCorrect: false
-			}
-		]
-	},
-	{
-		questionText: 'What is the largest mammal on the Earth?',
-		options: [
-			{
-				text: 'Elephant',
-				isCorrect: false
-			},
-			{
-				text: 'Blue whale',
-				isCorrect: true
-			},
-			{
-				text: 'Giraffe',
-				isCorrect: false
-			},
-			{
-				text: 'Rhino',
-				isCorrect: false
-			}
-		]
-	},
-	{
-		questionText: 'Which planet of the solar system is the largest?',
-		options: [
-			{
-				text: 'Uranus',
-				isCorrect: false
-			},
-			{
-				text: 'Jupiter',
-				isCorrect: true
-			},
-			{
-				text: 'Earth',
-				isCorrect: false
-			}
-		]
-	},
-	{
-		questionText: 'What is considered the largest island on Earth?',
-		options: [
-			{
-				text: 'Papua New Guinea',
-				isCorrect: false
-			},
-			{
-				text: 'Australia',
-				isCorrect: false
-			},
-			{
-				text: 'Greenland',
-				isCorrect: true
-			},
-			{
-				text: 'Iceland',
-				isCorrect: false
-			}
-		]
-	},
-	{
-		questionText: 'Is Switzerand a member of the European Union?',
-		options: [
-			{
-				text: 'Yes',
-				isCorrect: false
-			},
-			{
-				text: 'No',
-				isCorrect: true
-			}
-		]
-	},
-	{
-		questionText: 'Position the countries in the exceeding order based on their smelliness',
-		options: [
-			{
-				text: 'India, Serbia, Bangladesh, Mexico, Sudan, Somali',
-				isCorrect: false
-			},
-			{
-				text: 'Serbia, Mexico, Bangladesh, India, Sudan, Somali',
-				isCorrect: true
-			},
-			{
-				text: 'Serbia, India, Bangladesh, Mexico, Sudan, Somali',
-				isCorrect: false
-			}
-		]
-	}
-];</script>
+	var gutter = 16;
+var testQuestions = {
+	topic: 'test topic',
+	questions: [
+		{
+			questionText: 'Which bear is the best bear?',
+			options: [
+				{
+					text: 'Black bear',
+					isCorrect: true
+				},
+				{
+					text: 'Polar bear',
+					isCorrect: false
+				},
+				{
+					text: 'Grizly bear',
+					isCorrect: false
+				},
+				{
+					text: 'Brown bear',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'What is the largest mammal on the Earth?',
+			options: [
+				{
+					text: 'Elephant',
+					isCorrect: false
+				},
+				{
+					text: 'Blue whale',
+					isCorrect: true
+				},
+				{
+					text: 'Giraffe',
+					isCorrect: false
+				},
+				{
+					text: 'Rhino',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'Which planet of the solar system is the largest?',
+			options: [
+				{
+					text: 'Uranus',
+					isCorrect: false
+				},
+				{
+					text: 'Jupiter',
+					isCorrect: true
+				},
+				{
+					text: 'Earth',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'What is considered the largest island on Earth?',
+			options: [
+				{
+					text: 'Papua New Guinea',
+					isCorrect: false
+				},
+				{
+					text: 'Australia',
+					isCorrect: false
+				},
+				{
+					text: 'Greenland',
+					isCorrect: true
+				},
+				{
+					text: 'Iceland',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'Is Switzerand a member of the European Union?',
+			options: [
+				{
+					text: 'Yes',
+					isCorrect: false
+				},
+				{
+					text: 'No',
+					isCorrect: true
+				}
+			]
+		},
+		{
+			questionText: 'Position the countries in the exceeding order based on their smelliness',
+			options: [
+				{
+					text: 'India, Serbia, Bangladesh, Mexico, Sudan, Somali',
+					isCorrect: false
+				},
+				{
+					text: 'Serbia, Mexico, Bangladesh, India, Sudan, Somali',
+					isCorrect: true
+				},
+				{
+					text: 'Serbia, India, Bangladesh, Mexico, Sudan, Somali',
+					isCorrect: false
+				}
+			]
+		}
+	]
+}
+var civilRightsQuestions = {
+	topic: 'אזרחות',
+	questions: [
+		{
+			questionText: 'איזה מבין הכללים הבאים לא מהווה חלק מהכללים הנועדו להבטיח את הזכות להליך הוגן?',
+			options: [
+				{
+					text: 'אדם זכאי לייצוג משפטי במידה והוא אזרח המדינה',
+					isCorrect: true
+				},
+				{
+					text: 'אדם נחשב חף מפשע עד שהורשע',
+					isCorrect: false
+				},
+				{
+					text: 'משפט צריך להתנהל בפומבי',
+					isCorrect: false
+				},
+				{
+					text: 'אין להעניש אדם ללא משפט',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'מהו התנאי על פיו רשאית המדינה להחרים רכוש שברשות אדם פרטי?',
+			options: [
+				{
+					text: 'אם יינתן פיצוי שווה ערך לאותו אדם',
+					isCorrect: false
+				},
+				{
+					text: 'אם קיימת פגיעה בבטחון המדינה והחברה',
+					isCorrect: true
+				},
+				{
+					text: 'במקרה בו הקניין חומרי ',
+					isCorrect: false
+				},
+				{
+					text: 'במקרה בו הקניין רוחני',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'בשונה מהגדרת שלטון החוק במובן הפורמלי, מי מהבאים מגדיר את שלטון החוק במובן המהותי ?',
+			options: [
+				{
+					text: 'חוק נחקק על ידי בית המחוקקים',
+					isCorrect: false
+				},
+				{
+					text: 'הולם את העקרונות הדמוקרטיים ומונע את עריצות שלטון',
+					isCorrect: true
+				},
+				{
+					text: 'על החוק להיות מנוסח בבהירות גלוי וידוע',
+					isCorrect: false
+				},
+				{
+					text: 'חובת הציות לחוק חלה על הרשויות ועל האזרחים',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'באילו תחומים משמר הסדר הסטטוס-קוו את המצב שהיה קיים ערב הקמת המדינה?',
+			options: [
+				{
+					text: 'בתי דין, איסור חמץ, והתיישבויות',
+					isCorrect: false
+				},
+				{
+					text: 'רשות השידור, מיעוטים ושעות עבודה ומנוחה',
+					isCorrect: false
+				},
+				{
+					text: 'נישואין וגירושין, שבת, כשרות וחינוך',
+					isCorrect: true
+				},
+				{
+					text: 'הפרדת רשויות, קיום בחירות וקיבוץ גלויות',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'מהי פקודה בלתי חוקית בעליל?',
+			options: [
+				{
+					text: 'חוק או צו מוסרי לחלוטין',
+					isCorrect: false
+				},
+				{
+					text: 'חוק או צו הסותר את ערכי החברה המתוקנת',
+					isCorrect: true
+				},
+				{
+					text: 'פקודה שניתן לציית לה ללא העמדה לדין בישראל',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'מהי מטרתו של מעצר מנהלי?',
+			options: [
+				{
+					text: 'להעניש אדם על פעולות שביצע בהיותו קטין',
+					isCorrect: false
+				},
+				{
+					text: 'למנוע ביצוע פשע עתידי של אותו אדם',
+					isCorrect: true
+				},
+				{
+					text: 'לבצע מעצר הנוגד את הוראת שר הבטחון',
+					isCorrect: false
+				},
+				{
+					text: 'לעצור פשע של מנהל בחברה ציבורית',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'מהי ההסכמה המשותפת לגישה הליברלית ולגישה הסוציאל דמוקרטית?',
+			options: [
+				{
+					text: 'לשאוף ליצירת שיוויון בין הפריטים',
+					isCorrect: false
+				},
+				{
+					text: 'לעודד יוזמה פרטית לעזור למי שאינם מסוגלים להסתדר בכוחות עצמם',
+					isCorrect: false
+				},
+				{
+					text: 'לשמור על חירות, חופש הביטוי וההתארגנות ושיוויון בפני החוק',
+					isCorrect: true
+				},
+				{
+					text: 'ליצור תחרות חופשית בתחום הכלכלי תוך התערבות מינימלית מצד המדינה',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'מהי אחריות מיניסטריאלית?',
+			options: [
+				{
+					text: 'האחריות של שר על כל הנעשה בתחומי משרדו, גם באי ידיעתו',
+					isCorrect: true
+				},
+				{
+					text: 'האחריות של קבוצה לפעול יחד למען מטרה חברתית משותפת',
+					isCorrect: false
+				},
+				{
+					text: 'אחריות סיעות האופוזיציה לייצג נאמנה את המיעוט בציבור',
+					isCorrect: false
+				},
+				{
+					text: 'אחריות הוועדה לבחירת שופטים להמנע מהשפעות חיצוניות',
+					isCorrect: false
+				}
+			]
+		}
+	]
+}</script>
 <script type='text/javascript' src='libs/jquery-1.12.0.min.js'></script>
 <script type='text/javascript' src='libs/helpers.js'></script>
 <script type='text/javascript' src='libs/chooseOption.js'></script>

@@ -4,61 +4,63 @@ var pickAxeCursor = {};
 var questionBoard = {};
 var animationContainer = {};
 var answerModal = {};
+var chosenTopic = [];
+var timer = {};
+var questionTime = 59;
+var timeSpent = 0;
+var timerSeconds = {};
 
-function movePickAxe() {
-	var scaleCoeff = 1-(Math.abs(1-stage.scaleX));
-	pickAxeCursor.x = (stage.mouseX)*scaleCoeff;
-	pickAxeCursor.y = (stage.mouseY)*scaleCoeff;
-}
-
-function startGame() {
-	printQuestion();
-}
-
-function showAnswerModal(isCorrect) {
+function showAnswerModal(answer) {
 	answerModal = new lib.answerModal();
-	if(isCorrect) {
-		answerModal.instance_1.alpha = 0;
-		answerModal.instance_2.alpha = 1;
-		answerModal.answerModal__text.text = 'תשובתך נכונה!';
-	} else {
-		answerModal.instance_1.alpha = 1;
-		answerModal.instance_2.alpha = 0;
-		answerModal.answerModal__text.text = 'תשובתך לא נכונה!';
+
+	switch(answer) {
+		case 'correct':
+			answerModal.instance_1.alpha = 0;
+			answerModal.instance_2.alpha = 1;
+			answerModal.instance_3.alpha = 0.3;
+			answerModal.answerModal__text.text = 'תשובתך נכונה!';
+			break;
+		case 'wrong':
+			answerModal.instance_1.alpha = 1;
+			answerModal.instance_2.alpha = 0;
+			answerModal.instance_3.alpha = 0.3;
+			answerModal.answerModal__text.text = 'תשובתך לא נכונה!';
+			break;
+		case 'timeout':
+			answerModal.instance_1.alpha = 0;
+			answerModal.instance_2.alpha = 0;
+			answerModal.instance_3.alpha = 0.3;
+			answerModal.answerModal__text.text = 'הזמן נגמר!';
+			break;
 	}
-	answerModal.instance_3.alpha = 0.3;
+	
 	answerModal.y = 0;
 	answerModal.x = 480;
+
 	answerModal.instance.addEventListener('click', function() {
-		stage.removeChild(answerModal);
-		optionsArray.forEach(function(e) {
-			stage.removeChild(e);
-		});
-		optionsArray = [];
-		stage.removeChild(questionBoard);
+		cleanStage();
 		printQuestion(0);
-	})
+	});
+
 	stage.addChild(answerModal);
 }
 
 function correctAnswer() {
-	console.log('Correct!');
-	questions.splice(0,1);
-	if(questions.length > 0) {
-		showAnswerModal(true);
+	chosenTopic.questions.splice(0,1);
+	if(chosenTopic.questions.length > 0) {
+		showAnswerModal('correct');
 	} else {
 		alert("There are no questions left");
 	}
 }
 
 function wrongAnswer() {
-	console.log('Wrong!');
-	questions.splice(questions.length,0,questions[0]);
-	questions.splice(0,1);
-	showAnswerModal(false);
+	moveQuestionToEnd();
+	showAnswerModal('wrong');
 }
 
 function chooseOptionFn(questionOption) {
+	stopTimer();
 	var isCorrect = questionOption.isCorrect;
 	if(isCorrect === true) {
 		correctAnswer();
@@ -68,10 +70,10 @@ function chooseOptionFn(questionOption) {
 }
 
 function enterOption() {
-	console.log("Over...");
-	//stage.cursor = 'none';
+	stage.cursor = 'none';
 
 	pickAxeCursor = new lib.pickaxe();
+	pickAxeCursor.stop();
 	movePickAxe();
 	stage.addChild(pickAxeCursor);
 	cursorsArray.push(pickAxeCursor);
@@ -81,8 +83,7 @@ function enterOption() {
 }
 
 function leaveOption() {
-	console.log("Out..");
-	//stage.cursor = 'default';
+	stage.cursor = 'default';
 	cursorsArray.forEach(function(e) {
 		stage.removeChild(e);
 	});
@@ -91,49 +92,44 @@ function leaveOption() {
 }
 
 function selectOption(event) {
-	leaveOption();
-	chooseOptionFn(event.currentTarget);
+	pickAxeCursor.gotoAndPlay(0);
 
-	optionsArray.forEach(function(option) {
-		if(option != event.currentTarget) {
-			option.alpha = 0.5;
-		}
-		option.removeEventListener("click", selectOption, false);
-		option.removeEventListener('mouseover', enterOption, false);
-		option.removeEventListener('mouseout', leaveOption, false);
-	})
+	setTimeout(function() {
+		leaveOption();
+		chooseOptionFn(event.currentTarget);
+		optionsArray.forEach(function(questionOption) {
+			if(questionOption != event.currentTarget) {
+				questionOption.alpha = 0.5;
+			}
+		});
+		removeListenersFromOptions();
+	}, 524);
 }
 
 function printQuestion() {
 
-	questionBoard = new lib.questionBoard();
-	questionBoard.questionText.color = "#333333";
-	questionBoard.questionText.font = "16px 'Heebo'";
-	questionBoard.questionText.text = questions[0].questionText;
-	questionBoard.x = 480;
-	questionBoard.y = 0;
-	stage.addChild(questionBoard);
+	addQuestionBoard(chosenTopic.questions[0].questionText);
 
-	questions[0].options.forEach(function(option, index) {
+	chosenTopic.questions[0].options.forEach(function(option, index) {
 		var questionOption = new lib.stoneOption();
 		questionOption.optionText.color = "#333333";
-		questionOption.optionText.font = "16px 'Heebo'";
+		questionOption.optionText.font = "12px 'Heebo'";
 		questionOption.optionText.text = option.text;
 		var circleWidth = questionOption.nominalBounds.width;
 		
 		var stageWidth = document.getElementById("animation_container").offsetWidth;
-		questionOption.x = (stageWidth-((circleWidth)*questions[0].options.length))/2+((circleWidth+gutter)*index);
+		questionOption.x = (stageWidth-((circleWidth)*chosenTopic.questions[0].options.length))/2+((circleWidth+gutter)*index);
 		questionOption.x = questionOption.x-gutter;
 		questionOption.y = 342;
 		questionOption.isCorrect = option.isCorrect;
 		
 		optionsArray.push(questionOption);
-		
-		questionOption.addEventListener("click", selectOption, false);
-		questionOption.addEventListener('mouseover', enterOption, false);
-		questionOption.addEventListener('mouseout', leaveOption, false);
+
+		addListenersToOptions(questionOption);
 
 		stage.addChild(questionOption);
 	});
+	
+	startTimer();
 }
 

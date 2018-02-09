@@ -5,7 +5,10 @@
     font-family: 'Assistant', sans-serif;
 }
 
-
+#mycb {
+    font-size: 18px;
+    text-align: right;
+}
 gameArea {
     width: 100%;
     height: 500px;
