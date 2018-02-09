@@ -44,7 +44,7 @@ function movePickAxe() {
 }
 
 
-function cleanStage() {
+function cleanStage(mode) {
 	stage.removeChild(answerModal);
 	removeListenersFromOptions();
 	optionsArray.forEach(function(option) {
@@ -52,6 +52,11 @@ function cleanStage() {
 	});
 	optionsArray = [];
 	stage.removeChild(questionBoard);
+
+	if(mode == 'all') {
+		stage.removeChild(timer);
+		stage.removeChild(trolley);
+	}
 }
 
 function startTimer() {
@@ -74,7 +79,7 @@ function startTimer() {
 function stopTimer() {
     clearInterval(timerSeconds);
     timeSpent += questionTime - parseInt(timer.timer__text.text);
-	console.log(timeSpent);
+	//console.log(timeSpent);
 }
 
 function addTimer() {
@@ -91,4 +96,38 @@ function addTrolley() {
 	trolley.x = 800;
 	trolley.goldTrolley__text.font = "60px 'Heebo'";
 	stage.addChild(trolley);
+}
+
+function secondsToMinutes(seconds) {
+	var minutes = Math.floor(seconds/60);
+	var remainder = seconds % 60;
+
+	if(minutes < 10) {
+		minutes = '0'+minutes;
+	}
+	if(remainder < 10) {
+		remainder = '0'+remainder;
+	}
+
+	return minutes+':'+remainder;
+}
+
+function showFinalModal(finalScore) {
+	var finalModal = new lib.finalModal();
+	finalModal.gameFinish__text.text = 'סיימת את המשחק בנושא '+chosenTopic.topic;
+	finalModal.gameTime__text.text = 'זמן: '+secondsToMinutes(timeSpent);
+	finalModal.gameScore__text.text = 'ציון: '+Math.round(finalScore);
+	finalModal.y = 150;
+	finalModal.x = 480;
+
+	finalModal.endGameBtn.addEventListener('click', function() {
+		window.close();
+	});
+	finalModal.anotherGameBtn.addEventListener('click', function() {
+		resetVariables();
+		stage.removeChild(finalModal);
+		addSelectThemeDrodown();
+	});
+
+	stage.addChild(finalModal);
 }

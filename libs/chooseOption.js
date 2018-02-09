@@ -1,6 +1,10 @@
+var numberOfQuestions = 0;
+
 // arrays
 var optionsArray = [];
 var cursorsArray = [];
+var answeredQuestionsArray = [];
+var questionTries = {};
 
 // animate CC object
 var pickAxeCursor = {};
@@ -11,11 +15,37 @@ var chosenTopic = [];
 var timer = {};
 var trolley = {};
 var timerSeconds = {};
+var selectThemeDropdown = {};
 
 // counters
 var correctAnswersCounter = 0;
 var questionTime = 59;
 var timeSpent = 0;
+
+function resetVariables() {
+	numberOfQuestions = 0;
+
+	// arrays
+	optionsArray = [];
+	cursorsArray = [];
+	answeredQuestionsArray = [];
+	questionTries = {};
+
+	// animate CC object
+	pickAxeCursor = {};
+	questionBoard = {};
+	animationContainer = {};
+	answerModal = {};
+	chosenTopic = [];
+	timer = {};
+	trolley = {};
+	timerSeconds = {};
+
+	// counters
+	correctAnswersCounter = 0;
+	questionTime = 59;
+	timeSpent = 0;
+}
 
 function showAnswerModal(answer) {
 	answerModal = new lib.answerModal();
@@ -45,38 +75,55 @@ function showAnswerModal(answer) {
 	answerModal.x = 480;
 
 	answerModal.instance.addEventListener('click', function() {
-		cleanStage();
+		cleanStage('questions');
 		printQuestion(0);
 	});
 
 	stage.addChild(answerModal);
 }
 
-function correctAnswer() {
+function correctAnswer(questionOption) {
 	trolley.gotoAndPlay(1);
+	
+	//answeredQuestionsArray.push(chosenTopic.questions[0]);
+	if(!questionTries[chosenTopic.questions[0].numberOfTries]) {
+		questionTries[chosenTopic.questions[0].numberOfTries] = 1;
+	} else {
+		questionTries[chosenTopic.questions[0].numberOfTries]++;
+	}
+
 	trolley.goldTrolley__text.text = ++correctAnswersCounter;
 	setTimeout(function() {
 		chosenTopic.questions.splice(0,1);
 		if(chosenTopic.questions.length > 0) {
 			showAnswerModal('correct');
 		} else {
-			alert("There are no questions left");
+			var finalScore = 0;
+			for (var property1 in questionTries) {
+				finalScore += parseInt(questionTries[property1])*(100 / (numberOfQuestions * parseInt(property1)));
+				debugger;
+			}
+			console.log(Math.round(finalScore));
+			cleanStage('all');
+			showFinalModal(finalScore);
 		}
 	}, 850);
 }
 
-function wrongAnswer() {
+function wrongAnswer(questionOption) {
 	moveQuestionToEnd();
 	showAnswerModal('wrong');
 }
 
 function chooseOptionFn(questionOption) {
 	stopTimer();
+	chosenTopic.questions[0].numberOfTries++;
+
 	var isCorrect = questionOption.isCorrect;
 	if(isCorrect) {
-		correctAnswer();
+		correctAnswer(questionOption);
 	} else {
-		wrongAnswer();
+		wrongAnswer(questionOption);
 	}
 }
 

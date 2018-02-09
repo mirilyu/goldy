@@ -138,7 +138,7 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 	this.optionText.lineHeight = 20;
 	this.optionText.lineWidth = 85;
 	this.optionText.parent = this;
-	this.optionText.setTransform(95.1,50.6,1.718,1.561);
+	this.optionText.setTransform(95.1,60.6,1.718,1.561);
 
 	this.instance = new lib.stoneaiAssets();
 	this.instance.parent = this;
@@ -316,6 +316,26 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
 
 }).prototype = getMCSymbolPrototype(lib.Path_2, new cjs.Rectangle(0,0,489,197), null);
+
+
+(lib.playagain = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.text = new cjs.Text("שחקו שוב", "18px 'Heebo Medium'", "#FFFFFF");
+	this.text.textAlign = "center";
+	this.text.lineHeight = 28;
+	this.text.lineWidth = 109;
+	this.text.parent = this;
+	this.text.setTransform(-2.5,-14.9);
+
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#808080").s().rr(-75,-30,150,60,6);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape,p:{scaleX:1,scaleY:1,x:0,y:0}},{t:this.text,p:{scaleX:1,scaleY:1,x:-2.5,y:-14.9}}]}).to({state:[{t:this.shape,p:{scaleX:1.043,scaleY:1.043,x:-3.2,y:-1.3}},{t:this.text,p:{scaleX:1.043,scaleY:1.043,x:-5.9,y:-16.8}}]},1).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-75,-30,150,60);
 
 
 (lib.goToInstructions = function(mode,startPosition,loop) {
@@ -872,6 +892,26 @@ p._updateVisibility = _updateVisibility;
 }).prototype = getMCSymbolPrototype(lib.Path_1_1, new cjs.Rectangle(0,0,29.9,26.3), null);
 
 
+(lib.finish = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.text = new cjs.Text("סיום", "18px 'Heebo Medium'", "#FFFFFF");
+	this.text.textAlign = "center";
+	this.text.lineHeight = 28;
+	this.text.lineWidth = 100;
+	this.text.parent = this;
+	this.text.setTransform(-1,-14.9);
+
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#808080").s().rr(-75,-30,150,60,6);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape,p:{scaleX:1,scaleY:1,x:0,y:0}},{t:this.text,p:{scaleX:1,scaleY:1,x:-1,y:-14.9}}]}).to({state:[{t:this.shape,p:{scaleX:1.043,scaleY:1.043,x:3.2,y:-1.2}},{t:this.text,p:{scaleX:1.043,scaleY:1.043,x:2.2,y:-16.8}}]},1).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-75,-30,150,60);
+
+
 (lib.Path_12_2 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -997,6 +1037,53 @@ p._updateVisibility = _updateVisibility;
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_10},{t:this.shape_9},{t:this.instance_12},{t:this.instance_11},{t:this.instance_10},{t:this.instance_9},{t:this.instance_8},{t:this.instance_7},{t:this.instance_6},{t:this.instance_5},{t:this.instance_4},{t:this.instance_3},{t:this.instance_2},{t:this.instance_1},{t:this.instance},{t:this.shape_8},{t:this.shape_7},{t:this.shape_6},{t:this.shape_5},{t:this.shape_4},{t:this.shape_3},{t:this.shape_2},{t:this.shape_1}]}).wait(1));
 
 }).prototype = getMCSymbolPrototype(lib.Symbol1_1, new cjs.Rectangle(-244.8,-113.9,489.6,226.9), null);
+
+
+(lib.finalModal = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.endGameBtn = new lib.finish();
+	this.endGameBtn.parent = this;
+	this.endGameBtn.setTransform(-175,363.3);
+	new cjs.ButtonHelper(this.endGameBtn, 0, 1, 1);
+
+	this.anotherGameBtn = new lib.playagain();
+	this.anotherGameBtn.parent = this;
+	this.anotherGameBtn.setTransform(175,363.3);
+	new cjs.ButtonHelper(this.anotherGameBtn, 0, 1, 1);
+
+	this.gameScore__text = new cjs.Text("", "16px 'Heebo'", "#333333");
+	this.gameScore__text.name = "gameScore__text";
+	this.gameScore__text.textAlign = "center";
+	this.gameScore__text.lineHeight = 26;
+	this.gameScore__text.lineWidth = 219;
+	this.gameScore__text.parent = this;
+	this.gameScore__text.setTransform(0,223.3);
+
+	this.gameTime__text = new cjs.Text("", "16px 'Heebo'", "#333333");
+	this.gameTime__text.name = "gameTime__text";
+	this.gameTime__text.textAlign = "center";
+	this.gameTime__text.lineHeight = 26;
+	this.gameTime__text.lineWidth = 218;
+	this.gameTime__text.parent = this;
+	this.gameTime__text.setTransform(0,138.3);
+
+	this.gameFinish__text = new cjs.Text("", "16px 'Heebo'", "#333333");
+	this.gameFinish__text.name = "gameFinish__text";
+	this.gameFinish__text.textAlign = "center";
+	this.gameFinish__text.lineHeight = 26;
+	this.gameFinish__text.lineWidth = 441;
+	this.gameFinish__text.parent = this;
+	this.gameFinish__text.setTransform(0,45.3);
+
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#FFFFFF").s().rr(-250,-125.65,500,251.3,8);
+	this.shape.setTransform(0,159,1,1.266);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape},{t:this.gameFinish__text},{t:this.gameTime__text},{t:this.gameScore__text},{t:this.anotherGameBtn},{t:this.endGameBtn}]}).wait(1));
+
+}).prototype = getMCSymbolPrototype(lib.finalModal, new cjs.Rectangle(-250,0,500.1,393.3), null);
 
 
 (lib.questionBoard = function(mode,startPosition,loop) {
@@ -1871,12 +1958,16 @@ p.nominalBounds = new cjs.Rectangle(0,-0.2,104.5,95.3);
 		stage.addChild(fl_TF);
 		
 		//הוספת הקומבו לבמה
-		var forcombo = new lib.forcomb();
-		forcombo.x = 480;
-		forcombo.y = 150;
-		stage.addChild(forcombo);
-		//הגדרות עבור כפתור "בחר" - חלק מהקומפוננטה של הקומבו
-		forcombo.startbtn.alpha = 0.3;
+		function addSelectThemeDropdown() {
+			selectThemeDropdown = new lib.forcomb();
+			selectThemeDropdown.x = 480;
+			selectThemeDropdown.y = 150;
+			stage.addChild(selectThemeDropdown);
+			//הגדרות עבור כפתור "בחר" - חלק מהקומפוננטה של הקומבו
+			selectThemeDropdown.startbtn.alpha = 0.3;
+		}
+		
+		addSelectThemeDropdown();
 		
 		//מאזין לשינוי ערכים בקומבו - שימו לב שהפרמטר השני, האינסטנס של הקומבו, הוגדר ידנית בתוך הקומפוננט
 		$("#dom_overlay_container").on("change", "#mycb", mycb_change);
@@ -1884,7 +1975,7 @@ p.nominalBounds = new cjs.Rectangle(0,-0.2,104.5,95.3);
 		startModalWindow.instance.on("click", function() {
 			toggleElementVisibility(startModalWindow);
 			$("#mycb").show();
-			toggleElementVisibility(forcombo);
+			stage.removeChild(selectThemeDropdown);
 		});
 		
 		startModalWindow.instance_1.on("click", function(){
@@ -1909,9 +2000,9 @@ p.nominalBounds = new cjs.Rectangle(0,-0.2,104.5,95.3);
 				default:
 					chosenTopic = testQuestions;
 			}	
-			
-			forcombo.startbtn.alpha = 1;
-			forcombo.startbtn.addEventListener("click", callStartModal);
+			numberOfQuestions = chosenTopic.questions.length;
+			selectThemeDropdown.startbtn.alpha = 1;
+			selectThemeDropdown.startbtn.addEventListener("click", callStartModal);
 		}
 		
 		//לחיצה על בחר
@@ -1920,7 +2011,7 @@ p.nominalBounds = new cjs.Rectangle(0,-0.2,104.5,95.3);
 		}
 		function callStartModal() {
 			$("#mycb").hide();
-			toggleElementVisibility(forcombo);
+			stage.removeChild(selectThemeDropdown);
 			toggleElementVisibility(startModalWindow);
 			startModalWindow.modalText.text = "You have chosen: "+chosenTopic.topic;
 			topbar.gameName.text = chosenTopic.topic;
@@ -1946,10 +2037,10 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/goldy_atlas_.png?1518192139898", id:"goldy_atlas_"},
-		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1518192140309", id:"lib/jquery-2.2.4.min.js"},
-		{src:"components/sdk/anwidget.js?1518192140309", id:"sdk/anwidget.js"},
-		{src:"components/ui/src/combobox.js?1518192140309", id:"an.ComboBox"}
+		{src:"images/goldy_atlas_.png?1518201518993", id:"goldy_atlas_"},
+		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1518201519356", id:"lib/jquery-2.2.4.min.js"},
+		{src:"components/sdk/anwidget.js?1518201519356", id:"sdk/anwidget.js"},
+		{src:"components/ui/src/combobox.js?1518201519356", id:"an.ComboBox"}
 	],
 	preloads: []
 };

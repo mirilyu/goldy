@@ -22,7 +22,7 @@
   }
 </style>
 <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
-<script src="goldy.js?1518192140370"></script>
+<script src="goldy.js?1518201519412"></script>
 <script>
 // Global Scripts
 	var gutter = 16;
@@ -31,6 +31,7 @@ var testQuestions = {
 	questions: [
 		{
 			questionText: 'Which bear is the best bear?',
+			numberOfTries: 0,
 			options: [
 				{
 					text: 'Black bear',
@@ -52,6 +53,7 @@ var testQuestions = {
 		},
 		{
 			questionText: 'What is the largest mammal on the Earth?',
+			numberOfTries: 0,
 			options: [
 				{
 					text: 'Elephant',
@@ -73,6 +75,7 @@ var testQuestions = {
 		},
 		{
 			questionText: 'Which planet of the solar system is the largest?',
+			numberOfTries: 0,
 			options: [
 				{
 					text: 'Uranus',
@@ -90,6 +93,7 @@ var testQuestions = {
 		},
 		{
 			questionText: 'What is considered the largest island on Earth?',
+			numberOfTries: 0,
 			options: [
 				{
 					text: 'Papua New Guinea',
@@ -111,6 +115,7 @@ var testQuestions = {
 		},
 		{
 			questionText: 'Is Switzerand a member of the European Union?',
+			numberOfTries: 0,
 			options: [
 				{
 					text: 'Yes',
@@ -121,23 +126,6 @@ var testQuestions = {
 					isCorrect: true
 				}
 			]
-		},
-		{
-			questionText: 'Position the countries in the exceeding order based on their smelliness',
-			options: [
-				{
-					text: 'India, Serbia, Bangladesh, Mexico, Sudan, Somali',
-					isCorrect: false
-				},
-				{
-					text: 'Serbia, Mexico, Bangladesh, India, Sudan, Somali',
-					isCorrect: true
-				},
-				{
-					text: 'Serbia, India, Bangladesh, Mexico, Sudan, Somali',
-					isCorrect: false
-				}
-			]
 		}
 	]
 }
@@ -146,6 +134,7 @@ var civilRightsQuestions = {
 	questions: [
 		{
 			questionText: 'איזה מבין הכללים הבאים לא מהווה חלק מהכללים הנועדו להבטיח את הזכות להליך הוגן?',
+			numberOfTries: 0,
 			options: [
 				{
 					text: 'אדם זכאי לייצוג משפטי במידה והוא אזרח המדינה',
@@ -167,6 +156,7 @@ var civilRightsQuestions = {
 		},
 		{
 			questionText: 'מהו התנאי על פיו רשאית המדינה להחרים רכוש שברשות אדם פרטי?',
+			numberOfTries: 0,
 			options: [
 				{
 					text: 'אם יינתן פיצוי שווה ערך לאותו אדם',
@@ -188,6 +178,7 @@ var civilRightsQuestions = {
 		},
 		{
 			questionText: 'בשונה מהגדרת שלטון החוק במובן הפורמלי, מי מהבאים מגדיר את שלטון החוק במובן המהותי ?',
+			numberOfTries: 0,
 			options: [
 				{
 					text: 'חוק נחקק על ידי בית המחוקקים',
@@ -209,6 +200,7 @@ var civilRightsQuestions = {
 		},
 		{
 			questionText: 'באילו תחומים משמר הסדר הסטטוס-קוו את המצב שהיה קיים ערב הקמת המדינה?',
+			numberOfTries: 0,
 			options: [
 				{
 					text: 'בתי דין, איסור חמץ, והתיישבויות',
@@ -230,6 +222,7 @@ var civilRightsQuestions = {
 		},
 		{
 			questionText: 'מהי פקודה בלתי חוקית בעליל?',
+			numberOfTries: 0,
 			options: [
 				{
 					text: 'חוק או צו מוסרי לחלוטין',
@@ -247,6 +240,7 @@ var civilRightsQuestions = {
 		},
 		{
 			questionText: 'מהי מטרתו של מעצר מנהלי?',
+			numberOfTries: 0,
 			options: [
 				{
 					text: 'להעניש אדם על פעולות שביצע בהיותו קטין',
@@ -268,6 +262,7 @@ var civilRightsQuestions = {
 		},
 		{
 			questionText: 'מהי ההסכמה המשותפת לגישה הליברלית ולגישה הסוציאל דמוקרטית?',
+			numberOfTries: 0,
 			options: [
 				{
 					text: 'לשאוף ליצירת שיוויון בין הפריטים',
@@ -289,6 +284,7 @@ var civilRightsQuestions = {
 		},
 		{
 			questionText: 'מהי אחריות מיניסטריאלית?',
+			numberOfTries: 0,
 			options: [
 				{
 					text: 'האחריות של שר על כל הנעשה בתחומי משרדו, גם באי ידיעתו',
