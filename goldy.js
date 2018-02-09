@@ -1958,15 +1958,6 @@ p.nominalBounds = new cjs.Rectangle(0,-0.2,104.5,95.3);
 		stage.addChild(fl_TF);
 		
 		//הוספת הקומבו לבמה
-		function addSelectThemeDropdown() {
-			selectThemeDropdown = new lib.forcomb();
-			selectThemeDropdown.x = 480;
-			selectThemeDropdown.y = 150;
-			stage.addChild(selectThemeDropdown);
-			//הגדרות עבור כפתור "בחר" - חלק מהקומפוננטה של הקומבו
-			selectThemeDropdown.startbtn.alpha = 0.3;
-		}
-		
 		addSelectThemeDropdown();
 		
 		//מאזין לשינוי ערכים בקומבו - שימו לב שהפרמטר השני, האינסטנס של הקומבו, הוגדר ידנית בתוך הקומפוננט
@@ -1993,13 +1984,17 @@ p.nominalBounds = new cjs.Rectangle(0,-0.2,104.5,95.3);
 			switch(mychoice) {
 				case 'civil':
 					chosenTopic = civilRightsQuestions;
+					chosenTopicQuestions = civilRightsQuestions.questions.slice();
 					break;
 				case 'science':
 					chosenTopic = scienceQuestions;
+					chosenTopicQuestions = scienceQuestions.questions.slice();
 					break;
 				default:
 					chosenTopic = testQuestions;
-			}	
+					chosenTopicQuestions = testQuestions.questions.slice();
+				debugger;
+			}
 			numberOfQuestions = chosenTopic.questions.length;
 			selectThemeDropdown.startbtn.alpha = 1;
 			selectThemeDropdown.startbtn.addEventListener("click", callStartModal);
@@ -2037,10 +2032,10 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/goldy_atlas_.png?1518201518993", id:"goldy_atlas_"},
-		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1518201519356", id:"lib/jquery-2.2.4.min.js"},
-		{src:"components/sdk/anwidget.js?1518201519356", id:"sdk/anwidget.js"},
-		{src:"components/ui/src/combobox.js?1518201519356", id:"an.ComboBox"}
+		{src:"images/goldy_atlas_.png?1518204003389", id:"goldy_atlas_"},
+		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1518204003728", id:"lib/jquery-2.2.4.min.js"},
+		{src:"components/sdk/anwidget.js?1518204003728", id:"sdk/anwidget.js"},
+		{src:"components/ui/src/combobox.js?1518204003728", id:"an.ComboBox"}
 	],
 	preloads: []
 };

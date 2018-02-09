@@ -4,6 +4,15 @@ function startGame() {
 	printQuestion();
 }
 
+function addSelectThemeDropdown() {
+	selectThemeDropdown = new lib.forcomb();
+	selectThemeDropdown.x = 480;
+	selectThemeDropdown.y = 150;
+	stage.addChild(selectThemeDropdown);
+	//הגדרות עבור כפתור "בחר" - חלק מהקומפוננטה של הקומבו
+	selectThemeDropdown.startbtn.alpha = 0.3;
+}
+
 function toggleElementVisibility(element) {
 	element.visible = !element.visible;
 }
@@ -19,8 +28,8 @@ function addQuestionBoard(boardText) {
 }
 
 function moveQuestionToEnd() {
-	chosenTopic.questions.splice(chosenTopic.questions.length,0,chosenTopic.questions[0]);
-	chosenTopic.questions.splice(0,1);
+	chosenTopicQuestions.splice(chosenTopicQuestions.length,0,chosenTopicQuestions[0]);
+	chosenTopicQuestions.splice(0,1);
 }
 
 function addListenersToOptions(questionOption) {
@@ -126,7 +135,7 @@ function showFinalModal(finalScore) {
 	finalModal.anotherGameBtn.addEventListener('click', function() {
 		resetVariables();
 		stage.removeChild(finalModal);
-		addSelectThemeDrodown();
+		addSelectThemeDropdown();
 	});
 
 	stage.addChild(finalModal);

@@ -3,7 +3,6 @@ var numberOfQuestions = 0;
 // arrays
 var optionsArray = [];
 var cursorsArray = [];
-var answeredQuestionsArray = [];
 var questionTries = {};
 
 // animate CC object
@@ -11,7 +10,8 @@ var pickAxeCursor = {};
 var questionBoard = {};
 var animationContainer = {};
 var answerModal = {};
-var chosenTopic = [];
+var chosenTopic = {};
+var chosenTopicQuestions = [];
 var timer = {};
 var trolley = {};
 var timerSeconds = {};
@@ -28,7 +28,6 @@ function resetVariables() {
 	// arrays
 	optionsArray = [];
 	cursorsArray = [];
-	answeredQuestionsArray = [];
 	questionTries = {};
 
 	// animate CC object
@@ -36,7 +35,8 @@ function resetVariables() {
 	questionBoard = {};
 	animationContainer = {};
 	answerModal = {};
-	chosenTopic = [];
+	chosenTopic = {};
+	chosenTopicQuestions = [];
 	timer = {};
 	trolley = {};
 	timerSeconds = {};
@@ -85,17 +85,20 @@ function showAnswerModal(answer) {
 function correctAnswer(questionOption) {
 	trolley.gotoAndPlay(1);
 	
-	//answeredQuestionsArray.push(chosenTopic.questions[0]);
-	if(!questionTries[chosenTopic.questions[0].numberOfTries]) {
-		questionTries[chosenTopic.questions[0].numberOfTries] = 1;
+	//answeredQuestionsArray.push(chosenTopicQuestions[0]);
+	if(!questionTries[chosenTopicQuestions[0].numberOfTries]) {
+		questionTries[chosenTopicQuestions[0].numberOfTries] = 1;
 	} else {
-		questionTries[chosenTopic.questions[0].numberOfTries]++;
+		questionTries[chosenTopicQuestions[0].numberOfTries]++;
 	}
 
 	trolley.goldTrolley__text.text = ++correctAnswersCounter;
 	setTimeout(function() {
-		chosenTopic.questions.splice(0,1);
-		if(chosenTopic.questions.length > 0) {
+		chosenTopicQuestions.splice(0,1);
+		var test = testQuestions;
+		console.log(testQuestions);
+		debugger;
+		if(chosenTopicQuestions.length > 0) {
 			showAnswerModal('correct');
 		} else {
 			var finalScore = 0;
@@ -117,7 +120,7 @@ function wrongAnswer(questionOption) {
 
 function chooseOptionFn(questionOption) {
 	stopTimer();
-	chosenTopic.questions[0].numberOfTries++;
+	chosenTopicQuestions[0].numberOfTries++;
 
 	var isCorrect = questionOption.isCorrect;
 	if(isCorrect) {
@@ -166,9 +169,9 @@ function selectOption(event) {
 
 function printQuestion() {
 
-	addQuestionBoard(chosenTopic.questions[0].questionText);
-
-	chosenTopic.questions[0].options.forEach(function(option, index) {
+	addQuestionBoard(chosenTopicQuestions[0].questionText);
+		debugger;
+		chosenTopicQuestions[0].options.forEach(function(option, index) {
 		var questionOption = new lib.stoneOption();
 		questionOption.optionText.color = "#333333";
 		questionOption.optionText.font = "12px 'Heebo'";
@@ -176,7 +179,7 @@ function printQuestion() {
 		var circleWidth = questionOption.nominalBounds.width;
 		
 		var stageWidth = document.getElementById("animation_container").offsetWidth;
-		questionOption.x = (stageWidth-((circleWidth)*chosenTopic.questions[0].options.length))/2+((circleWidth+gutter)*index);
+		questionOption.x = (stageWidth-((circleWidth)*chosenTopicQuestions[0].options.length))/2+((circleWidth+gutter)*index);
 		questionOption.x = questionOption.x-gutter;
 		questionOption.y = 342;
 		questionOption.isCorrect = option.isCorrect;
