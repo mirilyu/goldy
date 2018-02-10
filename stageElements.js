@@ -127,9 +127,10 @@ function showFinalModal(finalScore) {
 		window.close();
 	});
 	finalModal.anotherGameBtn.addEventListener('click', function() {
+		stage.removeChild(finalScene);
 		resetVariables();
 		stage.removeChild(finalModal);
-		addSelectThemeDropdown();
+		addGameStartScreen();
 	});
 
 	stage.addChild(finalModal);
@@ -150,4 +151,9 @@ function addAboutModal() {
 
 function addGameRulesModal() {
 	console.log("Adding game rules modal window...");
+}
+
+function showFinalScene() {
+	finalScene = new lib.finalScene();
+	stage.addChild(finalScene);
 }

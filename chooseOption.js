@@ -19,6 +19,7 @@ var timer = {};
 var trolley = {};
 var timerSeconds = {};
 var selectThemeDropdown = {};
+var finalScene = {};
 
 // counters
 var correctAnswersCounter = 0;
@@ -45,9 +46,15 @@ function correctAnswer(questionOption) {
 			for (var property1 in questionTries) {
 				finalScore += parseInt(questionTries[property1])*(100 / (numberOfQuestions * parseInt(property1)));
 			}
-			console.log(Math.round(finalScore));
 			cleanStage('all');
-			showFinalModal(finalScore);
+			stage.removeChild(topbar);
+			stage.removeChild(cavern);
+			showFinalScene();
+
+			setTimeout(function() {
+				finalScene.stop();
+				showFinalModal(finalScore);
+			}, 3000)
 		}
 	}, 850);
 }
