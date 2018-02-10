@@ -110,11 +110,25 @@ function printQuestion() {
 
 	addQuestionBoard(chosenTopicQuestions[0].questionText);
 		chosenTopicQuestions[0].options.forEach(function(option, index) {
+
 		var questionOption = new lib.stoneOption();
-		questionOption.optionText.color = "#333333";
-		questionOption.optionText.font = "12px 'Heebo'";
-		questionOption.optionText.text = option.text;
 		var circleWidth = questionOption.nominalBounds.width;
+
+		if(option.text) {
+			questionOption.optionText.color = "#333333";
+			questionOption.optionText.font = "12px 'Heebo'";
+			questionOption.optionText.text = option.text;
+			questionOption.imageBounds.alpha = 0;		
+		} else {
+			var optionImage = new lib[option.image+'MC']();
+			var scaleValue = 0;
+			scaleValue = resizeImage(questionOption.imageBounds, optionImage);
+			optionImage.scaleX = scaleValue;
+			optionImage.scaleY = scaleValue;
+			questionOption.imageBounds.addChild(optionImage);
+
+			//questionOption.imageBounds.addEventListener("mouseover", showBigImage, false);
+		}
 		
 		var stageWidth = document.getElementById("animation_container").offsetWidth;
 		questionOption.x = (stageWidth-((circleWidth)*chosenTopicQuestions[0].options.length))/2+((circleWidth+gutter)*index);

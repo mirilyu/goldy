@@ -11,6 +11,15 @@ function addTopbar() {
 	topbar.y = 0;
 	stage.addChild(topbar);
 	topbar.gameName.font = "24px 'Heebo'";
+
+	// clicking on about link;
+	topbar.aboutLink.addEventListener('click', function() {
+		addAboutModal();
+	});
+	// clicking on game rules link
+	topbar.gameRulesLink.addEventListener('click', function() {
+		addGameRulesModal();
+	})
 }
 
 function addStartModal() {
@@ -124,4 +133,21 @@ function showFinalModal(finalScore) {
 	});
 
 	stage.addChild(finalModal);
+}
+
+function addAboutModal() {
+	var aboutModalWindow = new lib.aboutModal();
+	aboutModalWindow.x = 480;
+	aboutModalWindow.y = 0;
+	stage.addChild(aboutModalWindow);
+	$('#mycb').hide();
+
+	aboutModalWindow.closeBtn.addEventListener('click', function() {
+		stage.removeChild(aboutModalWindow);
+		$('#mycb').show();
+	})
+}
+
+function addGameRulesModal() {
+	console.log("Adding game rules modal window...");
 }

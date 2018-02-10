@@ -101,7 +101,6 @@ function startTimer() {
 function stopTimer() {
     clearInterval(timerSeconds);
     timeSpent += questionTime - parseInt(timer.timer__text.text);
-	//console.log(timeSpent);
 }
 
 function secondsToMinutes(seconds) {
@@ -116,4 +115,18 @@ function secondsToMinutes(seconds) {
 	}
 
 	return minutes+':'+remainder;
+}
+
+function resizeImage(box, content) {
+
+	var boxBounds = box.nominalBounds;
+	var contentBounds = content.nominalBounds;
+
+	var toScale = 0;
+	if (boxBounds.height / contentBounds.height < boxBounds.width / contentBounds.width) {
+		toScale = boxBounds.height / contentBounds.height;
+	} else {
+		toScale = boxBounds.width / contentBounds.width;
+	}
+	return toScale;
 }
