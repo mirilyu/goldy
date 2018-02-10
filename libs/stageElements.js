@@ -25,7 +25,7 @@ function addTopbar() {
 function addStartModal() {
 	startModalWindow = new lib.modalWindow();
 	startModalWindow.x = 480;
-	startModalWindow.y= 250;
+	startModalWindow.y= 200;
 	startModalWindow.modalText.color = "#333333";
 	startModalWindow.modalText.font = "32px 'Heebo'";
 	startModalWindow.modalText.text = "בחרת: " + chosenTopic.topic;
@@ -92,7 +92,7 @@ function addSelectThemeDropdown() {
 function addQuestionBoard(boardText) {
 	questionBoard = new lib.questionBoard();
 	questionBoard.questionText.color = "#333333";
-	questionBoard.questionText.font = "24px 'Heebo'";
+	questionBoard.questionText.font = "20px 'Heebo'";
 	questionBoard.questionText.text = boardText;
 	questionBoard.x = 480;
 	questionBoard.y = 0;
@@ -117,6 +117,9 @@ function addTrolley() {
 
 function showFinalModal(finalScore) {
 	var finalModal = new lib.finalModal();
+	finalModal.gameFinish__text.font = "24px 'Heebo'";
+	finalModal.gameTime__text.font = "24px 'Heebo'";
+	finalModal.gameScore__text.font = "24px 'Heebo'";
 	finalModal.gameFinish__text.text = 'סיימת את המשחק בנושא '+chosenTopic.topic;
 	finalModal.gameTime__text.text = 'זמן: '+secondsToMinutes(timeSpent);
 	finalModal.gameScore__text.text = 'ציון: '+Math.round(finalScore);

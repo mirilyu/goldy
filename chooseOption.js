@@ -25,6 +25,7 @@ var finalScene = {};
 var correctAnswersCounter = 0;
 var questionTime = 59;
 var timeSpent = 0;
+var goldQuantity = 10;
 
 function correctAnswer(questionOption) {
 	trolley.gotoAndPlay(1);
