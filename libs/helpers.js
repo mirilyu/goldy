@@ -23,6 +23,15 @@ function resetVariables() {
 	timeSpent = 0;
 }
 
+function addGameStartScreen() {
+	// adding cavern background
+	addCavern();
+	// adding topbar (navigation bar)
+	addTopbar();
+	// adding select topic dropdown
+	addSelectThemeDropdown();
+}
+
 function startGame() {
 	addTimer();
 	addTrolley();		

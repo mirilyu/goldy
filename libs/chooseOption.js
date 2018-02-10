@@ -6,6 +6,9 @@ var cursorsArray = [];
 var questionTries = {};
 
 // animate CC objects
+var cavern = {};
+var topbar = {};
+var startModalWindow = {};
 var pickAxeCursor = {};
 var questionBoard = {};
 var animationContainer = {};

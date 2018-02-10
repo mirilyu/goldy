@@ -1,3 +1,43 @@
+function addCavern() {
+	cavern = new lib.cavernBg();
+	cavern.x = 0;
+	cavern.y = 0;
+	stage.addChild(cavern);
+}
+
+function addTopbar() {
+	topbar = new lib.topbar();
+	topbar.x = 480;
+	topbar.y = 0;
+	stage.addChild(topbar);
+	topbar.gameName.font = "24px 'Heebo'";
+}
+
+function addStartModal() {
+	startModalWindow = new lib.modalWindow();
+	startModalWindow.x = 480;
+	startModalWindow.y= 250;
+	startModalWindow.modalText.color = "#333333";
+	startModalWindow.modalText.font = "32px 'Heebo'";
+	startModalWindow.modalText.text = "בחרת: " + chosenTopic.topic;
+	stage.addChild(startModalWindow);
+	
+	topbar.gameName.text = chosenTopic.topic;
+	
+	// returning to topic selection
+	startModalWindow.returnBtn.addEventListener('click', function() {
+		stage.removeChild(startModalWindow);
+		$("#mycb").show();
+		addSelectThemeDropdown();
+	})
+	// starting the game
+	startModalWindow.continueBtn.addEventListener("click", function(){
+		stage.removeChild(startModalWindow);
+		startGame();
+	});
+}
+
+
 function showAnswerModal(answer) {
 	answerModal = new lib.answerModal();
 

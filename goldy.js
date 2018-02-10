@@ -925,6 +925,18 @@ p.nominalBounds = new cjs.Rectangle(-75,-30,150,60);
 }).prototype = getMCSymbolPrototype(lib.Path_12_2, new cjs.Rectangle(0,0,120.8,114.8), null);
 
 
+(lib.cavernBg = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.instance = new lib.cavern();
+	this.instance.parent = this;
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = getMCSymbolPrototype(lib.cavernBg, new cjs.Rectangle(0,0,960,672), null);
+
+
 (lib.Symbol1_1 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -1137,13 +1149,6 @@ p.nominalBounds = new cjs.Rectangle(-29,-24,75,97.1);
 	this.initialize(mode,startPosition,loop,{});
 
 	// Layer 1
-	this.text = new cjs.Text("בשביל להציל את הכפר עליכם לאסוף 10 מטילי זהב", "16px 'Heebo'", "#333333");
-	this.text.textAlign = "center";
-	this.text.lineHeight = 26;
-	this.text.lineWidth = 293;
-	this.text.parent = this;
-	this.text.setTransform(0,105);
-
 	this.modalText = new cjs.Text("", "12px 'Heebo'", "#009933");
 	this.modalText.name = "modalText";
 	this.modalText.textAlign = "center";
@@ -1152,21 +1157,28 @@ p.nominalBounds = new cjs.Rectangle(-29,-24,75,97.1);
 	this.modalText.parent = this;
 	this.modalText.setTransform(0,26.5);
 
-	this.instance = new lib.modal_btn2();
-	this.instance.parent = this;
-	this.instance.setTransform(0,250);
-	new cjs.ButtonHelper(this.instance, 0, 1, 1);
+	this.returnBtn = new lib.modal_btn2();
+	this.returnBtn.parent = this;
+	this.returnBtn.setTransform(0,250);
+	new cjs.ButtonHelper(this.returnBtn, 0, 1, 1);
 
-	this.instance_1 = new lib.modal_btn();
-	this.instance_1.parent = this;
-	this.instance_1.setTransform(0.1,183.8);
-	new cjs.ButtonHelper(this.instance_1, 0, 1, 1);
+	this.continueBtn = new lib.modal_btn();
+	this.continueBtn.parent = this;
+	this.continueBtn.setTransform(0.1,183.8);
+	new cjs.ButtonHelper(this.continueBtn, 0, 1, 1);
+
+	this.text = new cjs.Text("בשביל להציל את הכפר עליכם לאסוף 10 מטילי זהב", "16px 'Heebo'", "#333333");
+	this.text.textAlign = "center";
+	this.text.lineHeight = 26;
+	this.text.lineWidth = 293;
+	this.text.parent = this;
+	this.text.setTransform(0,105);
 
 	this.shape = new cjs.Shape();
 	this.shape.graphics.f("#FFFFFF").s().p("EglfASwMAAAglfMBK/AAAMAAAAlfg");
 	this.shape.setTransform(0,120);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape},{t:this.instance_1},{t:this.instance},{t:this.modalText},{t:this.text}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape},{t:this.text},{t:this.continueBtn},{t:this.returnBtn},{t:this.modalText}]}).wait(1));
 
 }).prototype = getMCSymbolPrototype(lib.modalWindow, new cjs.Rectangle(-240,0,480,270.7), null);
 
@@ -1928,58 +1940,15 @@ p.nominalBounds = new cjs.Rectangle(0,-0.2,104.5,95.3);
 
 	// timeline functions:
 	this.frame_0 = function() {
-		//שימו לב, מערך זה משמש רק להצגת הנושאים בתוך תיבת הטקסט
-		//את הערכים שמוצגים בקומבו עצמו, יש להגדיר בתוך הקומפוננטה - לחיצה כפולה עליה בלייבררי, המקרה שלנו:
-		//forcomb -> click on the combobox componenet -> component parameters
-		//var subjects = ["לא בחרת נושא", "חשבון", "היסטוריה", "אנגלית"];
-		//משתנה שיעזור לברר איזה ערך מסומן בכל פעם בקומבו בוקס. עם הפתיחה מופיע הערך הראשון ולכן הערך ההתחלתי הוא 0
+		// adding game start screen;
+		addGameStartScreen();
 		
-		var startModalWindow = new lib.modalWindow();
-		startModalWindow.x = 480;
-		startModalWindow.y= 250;
-		startModalWindow.modalText.color = "#333333";
-		startModalWindow.modalText.font = "32px 'Heebo'";
-		startModalWindow.visible = false;
-		stage.addChild(startModalWindow);
-		
-		// adding topbar (navigation bar)
-		var topbar = new lib.topbar();
-		topbar.x = 480;
-		topbar.y = 0;
-		stage.addChild(topbar);
-		topbar.gameName.font = "24px 'Heebo'";
-		
-		
-		var fl_TF = new createjs.Text();
-		fl_TF.x = 200;
-		fl_TF.y = 100;
-		fl_TF.color = "#ff7700";
-		fl_TF.font = "20px Arial";
-		stage.addChild(fl_TF);
-		
-		//הוספת הקומבו לבמה
-		addSelectThemeDropdown();
-		
-		//מאזין לשינוי ערכים בקומבו - שימו לב שהפרמטר השני, האינסטנס של הקומבו, הוגדר ידנית בתוך הקומפוננט
+		// adding event for select topic dropdown
 		$("#dom_overlay_container").on("change", "#mycb", mycb_change);
 		
-		startModalWindow.instance.on("click", function() {
-			toggleElementVisibility(startModalWindow);
-			$("#mycb").show();
-			addSelectThemeDropdown();
-		});
-		
-		startModalWindow.instance_1.on("click", function(){
-			toggleElementVisibility(startModalWindow);
-			startGame();
-		});
-		
-		//בעת שינוי ערך בקומבו
-		function mycb_change(evt) {
-			fl_TF.text = ""; //ניקוי הבחירה הקודמת
-			//שימרת הערך שנבחר בקומבו
-			//console.log(evt.currentTarget.value);
-			mychoice = evt.currentTarget.value;
+		// choosing topic from select topic dropdown
+		function mycb_change(event) {
+			mychoice = event.currentTarget.value;
 			
 			switch(mychoice) {
 				case 'civil':
@@ -1993,37 +1962,24 @@ p.nominalBounds = new cjs.Rectangle(0,-0.2,104.5,95.3);
 				default:
 					chosenTopic = testQuestions;
 					chosenTopicQuestions = testQuestions.questions.slice();
-				debugger;
 			}
 			numberOfQuestions = chosenTopic.questions.length;
 			selectThemeDropdown.startbtn.alpha = 1;
 			selectThemeDropdown.startbtn.addEventListener("click", callStartModal);
 		}
 		
-		//לחיצה על בחר
-		function fl_ClickToPosition() {
-			fl_TF.text = subjects[mychoice];
-		}
 		function callStartModal() {
 			$("#mycb").hide();
 			stage.removeChild(selectThemeDropdown);
-			toggleElementVisibility(startModalWindow);
-			startModalWindow.modalText.text = "You have chosen: "+chosenTopic.topic;
-			topbar.gameName.text = chosenTopic.topic;
+			addStartModal();
 		}
 	}
 
 	// actions tween:
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
-	// Layer 4
-	this.instance = new lib.cavern();
-	this.instance.parent = this;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
-
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(480,295,960,672);
+p.nominalBounds = null;
 // library properties:
 lib.properties = {
 	width: 960,
@@ -2032,10 +1988,10 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/goldy_atlas_.png?1518252340807", id:"goldy_atlas_"},
-		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1518252341152", id:"lib/jquery-2.2.4.min.js"},
-		{src:"components/sdk/anwidget.js?1518252341152", id:"sdk/anwidget.js"},
-		{src:"components/ui/src/combobox.js?1518252341152", id:"an.ComboBox"}
+		{src:"images/goldy_atlas_.png?1518254352684", id:"goldy_atlas_"},
+		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1518254353041", id:"lib/jquery-2.2.4.min.js"},
+		{src:"components/sdk/anwidget.js?1518254353041", id:"sdk/anwidget.js"},
+		{src:"components/ui/src/combobox.js?1518254353041", id:"an.ComboBox"}
 	],
 	preloads: []
 };
