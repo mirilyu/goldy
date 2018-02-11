@@ -2,7 +2,7 @@
 
 var p; // shortcut to reference prototypes
 lib.ssMetadata = [
-		{name:"goldy_atlas_", frames: [[602,1519,153,107],[1204,2045,621,414],[0,0,960,672],[910,674,32,32],[962,0,693,636],[760,674,148,148],[1204,1628,662,415],[0,2015,396,305],[0,1699,458,314],[1657,0,245,317],[962,638,880,495],[602,1206,155,161],[760,1135,600,491],[1362,1135,600,491],[0,1206,600,491],[602,1628,600,491],[602,1369,148,148],[0,674,758,530]]}
+		{name:"goldy_atlas_", frames: [[602,1519,153,107],[1204,2045,621,414],[0,0,960,672],[910,674,32,32],[962,0,693,636],[602,1369,148,148],[1204,1628,662,415],[0,2015,396,305],[0,1699,458,314],[1657,0,245,317],[962,638,880,495],[602,1206,155,161],[1362,1135,600,491],[760,1135,600,491],[602,1628,600,491],[0,1206,600,491],[760,674,148,148],[0,674,758,530]]}
 ];
 
 
@@ -4127,7 +4127,7 @@ p.nominalBounds = new cjs.Rectangle(-20.9,-20.9,41.8,41.8);
 	this.gameTime__text.lineHeight = 26;
 	this.gameTime__text.lineWidth = 218;
 	this.gameTime__text.parent = this;
-	this.gameTime__text.setTransform(0,98.3);
+	this.gameTime__text.setTransform(0,118.3);
 
 	this.gameFinish__text = new cjs.Text("", "16px 'Heebo'", "#333333");
 	this.gameFinish__text.name = "gameFinish__text";
@@ -4135,7 +4135,7 @@ p.nominalBounds = new cjs.Rectangle(-20.9,-20.9,41.8,41.8);
 	this.gameFinish__text.lineHeight = 26;
 	this.gameFinish__text.lineWidth = 441;
 	this.gameFinish__text.parent = this;
-	this.gameFinish__text.setTransform(0,15.3);
+	this.gameFinish__text.setTransform(0,55.3);
 
 	this.shape = new cjs.Shape();
 	this.shape.graphics.f("#FFFFFF").s().rr(-250,-125.65,500,251.3,8);
@@ -5594,10 +5594,10 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/goldy_atlas_.png?1518273613698", id:"goldy_atlas_"},
-		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1518273615497", id:"lib/jquery-2.2.4.min.js"},
-		{src:"components/sdk/anwidget.js?1518273615497", id:"sdk/anwidget.js"},
-		{src:"components/ui/src/combobox.js?1518273615497", id:"an.ComboBox"}
+		{src:"images/goldy_atlas_.png?1518361020186", id:"goldy_atlas_"},
+		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1518361021843", id:"lib/jquery-2.2.4.min.js"},
+		{src:"components/sdk/anwidget.js?1518361021843", id:"sdk/anwidget.js"},
+		{src:"components/ui/src/combobox.js?1518361021843", id:"an.ComboBox"}
 	],
 	preloads: []
 };

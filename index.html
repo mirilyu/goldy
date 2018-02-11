@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<!--
+	NOTES:
+	1. All tokens are represented by '$' sign in the template.
+	2. You can write your code only wherever mentioned.
+	3. All occurrences of existing tokens will be replaced by their appropriate values.
+	4. Blank lines will be removed automatically.
+	5. Remove unnecessary comments before creating your template.
+-->
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="authoring-tool" content="Adobe_Animate_CC">
+<title>goldy</title>
+<!-- write your code here -->
+<style>
+  #animation_container {
+	position:absolute;
+	margin:auto;
+	left:0;right:0;
+	top:0;bottom:0;
+  }
+</style>
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script src="goldy.js?1518361022087"></script>
+<script>
+// Global Scripts
+	var gutter = 16;
+var testQuestions = {
+	topic: 'test topic',
+	questions: [
+		{
+			questionText: 'Choose the right image',
+			numberOfTries: 0,
+			options: [
+				{
+					image: 'bibi',
+					isCorrect: true
+				},
+				{
+					image: 'ester',
+					isCorrect: false
+				},
+				{
+					image: 'roni',
+					isCorrect: false
+				},
+				{
+					image: 'yuliy',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'Which bear is the best bear?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'Black bear',
+					isCorrect: true
+				},
+				{
+					text: 'Polar bear',
+					isCorrect: false
+				},
+				{
+					text: 'Grizly bear',
+					isCorrect: false
+				},
+				{
+					text: 'Brown bear',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'What is the largest mammal on the Earth?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'Elephant',
+					isCorrect: false
+				},
+				{
+					text: 'Blue whale',
+					isCorrect: true
+				},
+				{
+					text: 'Giraffe',
+					isCorrect: false
+				},
+				{
+					text: 'Rhino',
+					isCorrect: false
+				}
+			]
+		}
+	]
+}
+var civilRightsQuestions = {
+	topic: 'אזרחות',
+	questions: [
+		{
+			questionText: 'איזה מבין הכללים הבאים לא מהווה חלק מהכללים הנועדו להבטיח את הזכות להליך הוגן?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'אדם זכאי לייצוג משפטי במידה והוא אזרח המדינה',
+					isCorrect: true
+				},
+				{
+					text: 'אדם נחשב חף מפשע עד שהורשע',
+					isCorrect: false
+				},
+				{
+					text: 'משפט צריך להתנהל בפומבי',
+					isCorrect: false
+				},
+				{
+					text: 'אין להעניש אדם ללא משפט',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'מי מהבאים עמד בראש הרשות המבצעת בשנת 2018? העבר את העכבר על התמונה על מנת להגדיל. ',
+			numberOfTries: 0,
+			options: [
+				{
+					image: 'bibi',
+					isCorrect: true
+				},
+				{
+					image: 'ester',
+					isCorrect: false
+				},
+				{
+					image: 'roni',
+					isCorrect: false
+				},
+				{
+					image: 'yuliy',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'מהו התנאי על פיו רשאית המדינה להחרים רכוש שברשות אדם פרטי?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'אם יינתן פיצוי שווה ערך לאותו אדם',
+					isCorrect: false
+				},
+				{
+					text: 'אם קיימת פגיעה בבטחון המדינה והחברה',
+					isCorrect: true
+				},
+				{
+					text: 'במקרה בו הקניין חומרי ',
+					isCorrect: false
+				},
+				{
+					text: 'במקרה בו הקניין רוחני',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'בשונה מהגדרת שלטון החוק במובן הפורמלי, מי מהבאים מגדיר את שלטון החוק במובן המהותי ?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'חוק נחקק על ידי בית המחוקקים',
+					isCorrect: false
+				},
+				{
+					text: 'הולם את העקרונות הדמוקרטיים ומונע את עריצות שלטון',
+					isCorrect: true
+				},
+				{
+					text: 'על החוק להיות מנוסח בבהירות גלוי וידוע',
+					isCorrect: false
+				},
+				{
+					text: 'חובת הציות לחוק חלה על הרשויות ועל האזרחים',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'באילו תחומים משמר הסדר הסטטוס-קוו את המצב שהיה קיים ערב הקמת המדינה?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'בתי דין, איסור חמץ, והתיישבויות',
+					isCorrect: false
+				},
+				{
+					text: 'רשות השידור, מיעוטים ושעות עבודה ומנוחה',
+					isCorrect: false
+				},
+				{
+					text: 'נישואין וגירושין, שבת, כשרות וחינוך',
+					isCorrect: true
+				},
+				{
+					text: 'הפרדת רשויות, קיום בחירות וקיבוץ גלויות',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'מהי פקודה בלתי חוקית בעליל?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'חוק או צו מוסרי לחלוטין',
+					isCorrect: false
+				},
+				{
+					text: 'חוק או צו הסותר את ערכי החברה המתוקנת',
+					isCorrect: true
+				},
+				{
+					text: 'פקודה שניתן לציית לה ללא העמדה לדין בישראל',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'מהי מטרתו של מעצר מנהלי?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'להעניש אדם על פעולות שביצע בהיותו קטין',
+					isCorrect: false
+				},
+				{
+					text: 'למנוע ביצוע פשע עתידי של אותו אדם',
+					isCorrect: true
+				},
+				{
+					text: 'לבצע מעצר הנוגד את הוראת שר הבטחון',
+					isCorrect: false
+				},
+				{
+					text: 'לעצור פשע של מנהל בחברה ציבורית',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'מהי ההסכמה המשותפת לגישה הליברלית ולגישה הסוציאל דמוקרטית?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'לשאוף ליצירת שיוויון בין הפריטים',
+					isCorrect: false
+				},
+				{
+					text: 'לעודד יוזמה פרטית לעזור למי שאינם מסוגלים להסתדר בכוחות עצמם',
+					isCorrect: false
+				},
+				{
+					text: 'לשמור על חירות, חופש הביטוי וההתארגנות ושיוויון בפני החוק',
+					isCorrect: true
+				},
+				{
+					text: 'ליצור תחרות כלכלית חופשית תוך התערבות מינימלית מצד המדינה',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'מה מבטיח חוק יסוד מקרקעי ישראל?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: '17% מאדמות המדינה נתונות לאזרחים לא יהודים',
+					isCorrect: false
+				},
+				{
+					text: '90% מאדמות המדינה נתונות לכריחה בלבד',
+					isCorrect: true
+				},
+				{
+					text: 'מחצית מאדמות המדינה ששייכת לקק"ל ומחצית למדינה ',
+					isCorrect: false
+				},
+				{
+					text: 'מחצית מאדמות המדינה שייכת לאזרחים יהודים',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'מהי אחריות מיניסטריאלית?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'האחריות של שר על כל הנעשה בתחומי משרדו, גם באי ידיעתו',
+					isCorrect: true
+				},
+				{
+					text: 'האחריות של קבוצה לפעול יחד למען מטרה חברתית משותפת',
+					isCorrect: false
+				},
+				{
+					text: 'אחריות סיעות האופוזיציה לייצג נאמנה את המיעוט בציבור',
+					isCorrect: false
+				},
+				{
+					text: 'אחריות הוועדה לבחירת שופטים להמנע מהשפעות חיצוניות',
+					isCorrect: false
+				}
+			]
+		}
+	]
+}
+var scienceQuestions = {
+	topic: 'מדעים',
+	questions: [
+		{
+			questionText: 'איזה מהמדרגים הבאים הוא התיאור הנכון של סדרי גודל, מהקטן ביותר ועד הגדול ביותר?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'אטום, מולקולה, תא, יצור שלום',
+					isCorrect: true
+				},
+				{
+					text: 'תא, אטום, מולקולה, יצור שלם',
+					isCorrect: false
+				},
+				{
+					text: 'אטום, תא, מולקולה, יצור שלם',
+					isCorrect: false
+				},
+				{
+					text: 'מולקולה, תא, אטום, יצור שלם',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'איזו תכונה מאפשרת תמיד להבחין בין יסוד מתכתי ליסוד אל-מתכתי?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'מצב צבירה בטמפרטורת החדר',
+					isCorrect: false
+				},
+				{
+					text: 'הולכת זרם חשמלי בטמפרטורת החדר',
+					isCorrect: true
+				},
+				{
+					text: 'מסה',
+					isCorrect: false
+				},
+				{
+					text: 'צבע',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'מי מבין כוכבי הלכת הבאים ממוקם קרוב יותר לשמש?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'מאדים',
+					isCorrect: false
+				},
+				{
+					text: 'שבתאי',
+					isCorrect: false
+				},
+				{
+					text: 'פלוטו',
+					isCorrect: false
+				},
+				{
+					text: 'נוגה',
+					isCorrect: true
+				}
+			]
+		},
+		{
+			questionText: 'קראו את הקטע המעובד מתוך הספר "האלכימאי": "הוא התיך גוש עופרת בסיר ברזל. אליה הוסיף שכבה מזכוכית צהובה והתערובת קבלה צבע אדום. כאשר התערובת התקררה-הפכה לדסקית זהב". האם ייתכן שבתהליך חימום יהפוך יסוד העופרת ליסוד זהב?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'לא ייתכן שבתהליך חימום יסוד העופרת יהפוך ליסוד זהב',
+					isCorrect: true
+				},
+				{
+					text: 'ייתכן שבתהליך התרכבות כימית יהפוך יסוד עופרת ליסוד לזהב',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'תוכי ארה הם תוכים צבעוניים החיים בצמחייה סבוכה. התוכים הללו מתקשרים זה עם זה באמצעות קול ובאמצעות צבע. מהי הסיבה לשימוש בתקשורת באמצעות צבע?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'צבע מאפשר תקשורת בין תוכי ארה החיים בסבך.',
+					isCorrect: false
+				},
+				{
+					text: 'צבע הוא צורת תקשורת אצל כל הייצורים החיים',
+					isCorrect: false
+				},
+				{
+					text: 'צבע הוא צורת תקשורת רק בעונת הרבייה.',
+					isCorrect: false
+				},
+				{
+					text: 'צבע מאפשר תקשורת ממרחקים קצרים ובאור',
+					isCorrect: true
+				}
+			]
+		},
+		{
+			questionText: 'מה מלמדת אותנו העובדה שהמימן הוא היסוד הראשון בטבלה המחזורית?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'המימן הוא היסוד בעל המספר האטומי הקטן ביותר',
+					isCorrect: true
+				},
+				{
+					text: 'המימן הוא היסוד הפעיל ביותר',
+					isCorrect: false
+				},
+				{
+					text: 'המימן מופיע כמולקולות דו אטומיות',
+					isCorrect: false
+				},
+				{
+					text: 'המימן הוא גז בטמפרטורת החדר',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'היכן מצוי המידע לתכונת טביעת אצבעות?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'רק בקרום התא של תאי העור באצבעות',
+					isCorrect: false
+				},
+				{
+					text: 'ב-DNA (דנ"א) של תאי העור באצבעות',
+					isCorrect: false
+				},
+				{
+					text: 'ב-DNA (דנ"א) של כל תאי הגוף',
+					isCorrect: true
+				},
+				{
+					text: 'בקרום התא של כל תאי הגוף',
+					isCorrect: false
+				}
+			]
+		},
+		{
+			questionText: 'חללית מכדור הארץ הגיעה לכוכב לכת חדש. מהם הסימנים שבעזרתם ניתן לדעת האם הגיעו לכוכב שיש בו חיים?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'נפח הכוכב, עובי האטמוספרה, הימצאות כוח משיכה',
+					isCorrect: false
+				},
+				{
+					text: 'נוכחות הליום באטמוספרה, קרקע, ירח והימצאות מים',
+					isCorrect: false
+				},
+				{
+					text: 'הימצאות מים, קיום כוח משיכה, משך ההקפה שלו סביב עצמו',
+					isCorrect: false
+				},
+				{
+					text: 'הרכב הגזים, הימצאות מים, טמפרטורה, מצב צבירה של החומר',
+					isCorrect: true
+				}
+			]
+		},
+		{
+			questionText: '"מה מייצג המושג "שנת אור?',
+			numberOfTries: 0,
+			options: [
+				{
+					text: 'את השנה שבה סובב כדור הארץ סביב השמש',
+					isCorrect: false
+				},
+				{
+					text: 'את עונת הקיץ בכדור הארץ',
+					isCorrect: false
+				},
+				{
+					text: 'את התקופה שבה שורר אור באזור הקטבים',
+					isCorrect: false
+				},
+				{
+					text: 'את המרחק שעוברת קרן אור במשך שנה',
+					isCorrect: true
+				}
+			]
+		},
+		{
+			questionText: 'יהשוע נולד בדרום יבשת אפריקה בחודש אוגוסט בשעה 12:00 בצהריים. מה היה מיקומו של כדור הארץ ביחס למיקומה של השמש ביום בו נולד יהשוע?  העבר את העכבר על התמונה על מנת להגדיל.',
+			numberOfTries: 0,
+			options: [
+				{
+					image: 'sunFalse1',
+					isCorrect: false
+				},
+				{
+					image: 'sunTrue',
+					isCorrect: true
+				},
+				{
+					image: 'sunFalse2',
+					isCorrect: false
+				},
+				{
+					image: 'sunFalse3',
+					isCorrect: false
+				}
+			]
+		}
+	]
+}</script>
+<script type='text/javascript' src='libs/jquery-1.12.0.min.js'></script>
+<script type='text/javascript' src='libs/helpers.js'></script>
+<script type='text/javascript' src='libs/chooseOption.js'></script>
+<script type='text/javascript' src='libs/stageElements.js'></script>
+<script>
+var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+function init() {
+	canvas = document.getElementById("canvas");
+	anim_container = document.getElementById("animation_container");
+	dom_overlay_container = document.getElementById("dom_overlay_container");
+	images = images||{};
+	ss = ss||{};
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(lib.properties.manifest);
+}
+function handleFileLoad(evt) {	
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }	
+}
+function handleComplete(evt) {
+	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+	var queue = evt.target;
+	var ssMetadata = lib.ssMetadata;
+	for(i=0; i<ssMetadata.length; i++) {
+		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+	}
+	exportRoot = new lib.goldy();
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.enableMouseOver();	
+	//Registers the "tick" event listener.
+	fnStartAnimation = function() {
+		createjs.Ticker.setFPS(lib.properties.fps);
+		createjs.Ticker.addEventListener("tick", stage);
+	}	    
+	//Code to support hidpi screens and responsive scaling.
+	function makeResponsive(isResp, respDim, isScale, scaleType) {		
+		var lastW, lastH, lastS=1;		
+		window.addEventListener('resize', resizeCanvas);		
+		resizeCanvas();		
+		function resizeCanvas() {			
+			var w = lib.properties.width, h = lib.properties.height;			
+			var iw = window.innerWidth, ih=window.innerHeight;			
+			var pRatio = window.devicePixelRatio || 1, xRatio=iw/w, yRatio=ih/h, sRatio=1;			
+			if(isResp) {                
+				if((respDim=='width'&&lastW==iw) || (respDim=='height'&&lastH==ih)) {                    
+					sRatio = lastS;                
+				}				
+				else if(!isScale) {					
+					if(iw<w || ih<h)						
+						sRatio = Math.min(xRatio, yRatio);				
+				}				
+				else if(scaleType==1) {					
+					sRatio = Math.min(xRatio, yRatio);				
+				}				
+				else if(scaleType==2) {					
+					sRatio = Math.max(xRatio, yRatio);				
+				}			
+			}			
+			canvas.width = w*pRatio*sRatio;			
+			canvas.height = h*pRatio*sRatio;
+			canvas.style.width = dom_overlay_container.style.width = anim_container.style.width =  w*sRatio+'px';				
+			canvas.style.height = anim_container.style.height = dom_overlay_container.style.height = h*sRatio+'px';
+			stage.scaleX = pRatio*sRatio;			
+			stage.scaleY = pRatio*sRatio;			
+			lastW = iw; lastH = ih; lastS = sRatio;		
+		}
+	}
+	makeResponsive(true,'both',false,1);	
+	fnStartAnimation();
+}
+</script>
+<!-- write your code here -->
+</head>
+<body onload="init();" style="margin:0px;">
+	<div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:960px; height:590px">
+		<canvas id="canvas" width="960" height="590" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
+		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:960px; height:590px; position: absolute; left: 0px; top: 0px; display: block;">
+		</div>
+	</div>
+</body>
+</html>
