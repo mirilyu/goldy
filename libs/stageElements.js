@@ -149,7 +149,10 @@ function addAboutModal() {
 	aboutModalWindow.closeBtn.addEventListener('click', function() {
 		stage.removeChild(aboutModalWindow);
 		$('#mycb').show();
-	})
+	});
+	aboutModalWindow.hitLogoLink.addEventListener('click', function() {
+		window.open("http://www.hit.ac.il/", "_blank");
+	});	
 }
 
 function addGameRulesModal() {
