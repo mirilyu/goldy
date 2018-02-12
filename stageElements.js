@@ -163,3 +163,13 @@ function showFinalScene() {
 	finalScene = new lib.finalScene();
 	stage.addChild(finalScene);
 }
+
+function showOpeningScene() {
+	var openingScene = new lib.openingScene();
+	stage.addChild(openingScene);
+
+	setTimeout(function() {
+		stage.removeChild(openingScene);
+		addGameStartScreen();
+	}, 23000)
+}
